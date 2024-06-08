@@ -45,7 +45,8 @@ class EqualValues(Constraint):
             return True
 
 
-class MaximumCapacity(UnaryConstraint):
+class MaximumCapacity(UnaryConstraint): # is an unary constraint that checks wheter 
+    # the elements contained in a variable are not over a certain maximum capacity.
     def __init__(self, variable, max_capacity):
         super(MaximumCapacity, self).__init__(variable)
         self.maxCapacity = max_capacity

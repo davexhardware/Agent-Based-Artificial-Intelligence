@@ -29,7 +29,7 @@ class Minimax:
 
     def next_move(self, state):
         """
-        Compute the final move suggested to the player MAX
+        Compute the best next move suggested to the player MAX
         @param state: a state
         @return: a move
         """
@@ -48,8 +48,8 @@ class AlphaBeta:
         """
         A function that computes the value given by player MAX to a node
         @param state: a state
-        @param alpha:
-        @param beta:
+        @param alpha: best choice for max pruning
+        @param beta: best choice for min pruning
         @return: the value associated by max to the node
         """
         # game end check
@@ -71,8 +71,8 @@ class AlphaBeta:
         """
         A function that computes the value given by player MIN to a node
         @param state: a state
-        @param alpha:
-        @param beta:
+        @param alpha: best choice for min pruning
+        @param beta: best choice for max pruning
         @return: the value associated by max to the node
         """
         # game end check

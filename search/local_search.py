@@ -131,7 +131,7 @@ class Genetic:
     def run(self):
         population = [self.problem.random() for _ in range(self.population)]
         for e in range(self.generations):
-            best = max(population, key=lambda x: self.problem.value(x))
+            best = max(population, key=lambda x: self.problem.value(x)) # only for info
             print(f'Generation: {e} - max score: {self.problem.value(best)}')
             new_generation = [
                 self.mutation(
