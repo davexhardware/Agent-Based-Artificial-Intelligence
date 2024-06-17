@@ -266,14 +266,15 @@ class TicTacToe(Game):
         temp2 = []
         temp3 = []
         temp4 = []
-        temp1.append([el for el in state['max_cells'] if el in [(0, 0), (1, 1), (2, 2)]])
-        temp2.append([el for el in state['min_cells'] if el in [(0, 0), (1, 1), (2, 2)]])
+        minsize=min(self.height,self.width)
+        temp1.append([el for el in state['max_cells'] if el in [(r, r) for r in range(minsize)]])
+        temp2.append([el for el in state['min_cells'] if el in [(r, r) for r in range(minsize)]])
         if len(temp1[0]) == 3:
             return 1
         if len(temp2[0]) == 3:
             return -1
-        temp3.append([el for el in state['max_cells'] if el in [(0, 2), (1, 1), (2, 0)]])
-        temp4.append([el for el in state['min_cells'] if el in [(0, 2), (1, 1), (2, 0)]])
+        temp3.append([el for el in state['max_cells'] if el in [(i, minsize-i) for i in range(minsize)]])
+        temp4.append([el for el in state['min_cells'] if el in [(i, minsize-i) for i in range(minsize)]])
         if len(temp3[0]) == 3:
             return 1
         if len(temp4[0]) == 3:

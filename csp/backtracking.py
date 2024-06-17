@@ -54,12 +54,13 @@ def least_constraining_value(problem, state, variable, domains):
     @param problem: a CSP problem
     @param state: a state
     @param variable: an assignable variable
-    @return: a list of assignable values
+    @return: a list of assignable values in descending order of legal moves that the assignment would leave to the others variables
     """
     assignable_values = domains[variable]
+    new_state=problem.assign(state, variable, v)
     return sorted(assignable_values,
-                  key=lambda v: -sum([len(problem.legal_moves(problem.assign(state, variable, v), var))
-                                      for var in problem.assignable_variables(problem.assign(state, variable, v))]))
+                  key=lambda v: -sum([len(problem.legal_moves(new_state, var))
+                                      for var in problem.assignable_variables(new_state)]))
 
 
 class BackTracking:
@@ -150,7 +151,7 @@ class BackTracking:
                 new_domains = self.forward_checking(state, domains)
                 del(new_domains[variable])
 
-                # run the search on the new state
+                # run the search on the new state, with assigned value to variable and so reduced feasible values domain.
                 result = self.run_with_forward_checking(dict(state), new_domains)
 
                 # if succeeds return the solution

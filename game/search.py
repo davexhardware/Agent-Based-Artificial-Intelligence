@@ -60,7 +60,7 @@ class AlphaBeta:
         for s, a in self.game.successors(state):
             value = self.min_value(s, alpha, beta)
             best_value = max(best_value, value)
-            # beta test (if MAX choice will never be the choice of MIN, stop searching)
+            # if MAX's best value is greater than the previous MAX's b.v., it will never be the choice of MIN, stop searching
             if best_value > beta:
                 return best_value
             # update the best value for MAX
@@ -83,7 +83,7 @@ class AlphaBeta:
         for s, a in self.game.successors(state):
             value = self.max_value(s, alpha, beta)
             best_value = min(best_value, value)
-            # beta test (if MIN choice will never be the choice of MAX, stop searching)
+            # if MIN's best value is lower than the previous MIN's best value, in will never be the choice of MAX, stop searching
             if best_value < alpha:
                 return best_value
             # update the best value for MIN
@@ -98,8 +98,6 @@ class AlphaBeta:
         """
         alpha = -np.inf
         beta = np.inf
-
-        best_move = None
 
         for s, move in self.game.successors(state):
             value = self.min_value(s, alpha, beta)
