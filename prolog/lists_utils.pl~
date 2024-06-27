@@ -71,7 +71,7 @@ different(E,[H|T]):- not(E = H), different(E,T).
 % of A inside B, and D contains elements of A that are not in B.
 ex6([],_,[],[]).
 ex6([H|T],B,[H|T1],D):- member(H,B), ex6(T,B,T1,D).
-ex6([H|T],B,C,[H|T1]):- not(member(H,B)), ex6(T,B,C,T1).
+ex6([H|T],B,C,[H,T1]):- not(member(H,B)), ex6(T,B,C,T1).
 
 
 

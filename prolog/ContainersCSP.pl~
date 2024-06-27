@@ -5,7 +5,7 @@ explosive([e1, e2]).
 frozen([fz1, fz2, fz3]).
 fresh([fs1]).
 
-count([],0):- !.
+count([],0):- !. 
 count([_|T],X):- count(T,X2), X is X2+1.
 
 remove(E,[E|T1],T1):- !.
@@ -118,7 +118,8 @@ distribute_items([Item | RestItems], Containers, MaxCapacity, FinalContainers) :
 % candidate container among the remaining containers and we repeat the same procedure.
 place_item(Item, RestItems, [Container | RestContainers], MaxCapacity, [NewContainer | RestContainers]) :-
     add_item(Item, Container, NewContainer),
-    count(NewContainer, Length), % first constraint: check the maximum capacity of the container after adding the item into it.
+    count(NewContainer, Length), % first constraint: check the maximum capacity of the container after adding
+                                 % the item into it.
     Length =< MaxCapacity,
     constraints(NewContainer, RestItems).
 place_item(Item, RestItems, [Container | RestContainers], MaxCapacity, [Container | NewRestContainers]) :-
@@ -128,8 +129,7 @@ place_item(Item, RestItems, [Container | RestContainers], MaxCapacity, [Containe
 % Within the main, we init the containers. We create a list of lists containing NumberContainers empty list.
 % Then, we find the Items to be distributed within the containers.
 % Finally, we start distributing the items.
-main(NumberContainers, MaxCapacity, Solution):-
-    init_containers(NumberContainers, EmptyContainers),
-    items(Items),
-    distribute_items(Items, EmptyContainers, MaxCapacity, Solution).
+main(NumberContainers, MaxCapacity, Solution):- init_containers(NumberContainers, EmptyContainers), 
+                                        items(Items),
+                                        distribute_items(Items, EmptyContainers, MaxCapacity, Solution).
 
